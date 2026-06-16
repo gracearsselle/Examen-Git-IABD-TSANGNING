@@ -1,4 +1,4 @@
-import gradio as gr
+﻿import gradio as gr
 
 
 def hello(name: str) -> str:
@@ -13,4 +13,4 @@ demo = gr.Interface(
 )
 
 if __name__ == "__main__":
-    demo.launch()
+    demo.launch(server_name="0.0.0.0")
