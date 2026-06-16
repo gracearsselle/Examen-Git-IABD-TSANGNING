@@ -1,0 +1,25 @@
+﻿name: Deploy to Hugging Face
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          lfs: true
+
+      - name: Push to Hugging Face
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          git config user.email "gracearsselle@users.noreply.github.com"
+          git config user.name "gracearsselle"
+          git remote add hf https://GraceArsselle:${HF_TOKEN}@huggingface.co/spaces/GraceArsselle/Examen-Git-IABD-TSANGNING
+          git push hf main --force
